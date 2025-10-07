@@ -1,5 +1,14 @@
 \documentclass{template}
 \begin{document}
+%-----请编辑课程--------
+\course{某课程}%课程名
+%-----请编辑信息--------
+\studentname{张三}
+\studentclass{究物理01}
+\studentid{31415926}
+\season{Autumn}
+\years{2025}
+%---------------------
 \maketitle
 \newpage
 \thispagestyle{empty}
@@ -21,14 +30,17 @@
 \subsection{作业}
 可以调用$\backslash assignment$命令生成作业文档的标题，它相当于$\backslash section$.
 
-然而，为了方便逐次作业提交，这一级别的标题下还缀有个人信息栏。如你所见，信息栏中包含姓名、班级和学号，可以在前文当中编辑，通用于整个文档中所有的作业。
+然而，为了方便逐次作业提交，这一级别的标题下还缀有个人信息栏。如你所见，信息栏中包含姓名、班级和学号，可以在文首编辑，通用于整个文档中所有的作业。此外，文首还可以编辑课程信息和季节、年份信息。
 \begin{lstlisting}[title=\ ,frame=single]
   %个人信息设置
-\newcommand{\studentname}{张三}  % 姓名
-\newcommand{\studentclass}{究物理01}  % 班级
-\newcommand{\studentid}{31415926}  %学号
-
-  %设置编号格式
+\newcommand{\studentname}[1]{\def\@studentname{#1}}    % 姓名
+\newcommand{\studentclass}[1]{\def\@studentclass{#1}} % 班级
+\newcommand{\studentid}[1]{\def\@studentid{#1}}  %学号
+  %----------
+\newcommand{\course}[1]{\def\@course{#1}}  %课程
+\newcommand{\season}[1]{\def\@season{#1}}  %季节
+\newcommand{\years}[1]{\def\@years{#1}}  %年份
+  % 设置编号格式
 \counterwithout{section}{chapter}
 \renewcommand{\thesection}{作业\chinese{section}}
 \titleformat{\section}
@@ -48,7 +60,7 @@
 \end{problem}
 
 \begin{solution}
-    以下是这一部分的代码：
+    依旧代码格式：
     \begin{lstlisting}[title=\ ,frame=single]
   %problem
 \newcounter{problem}[subsection]

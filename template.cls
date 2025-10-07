@@ -32,14 +32,22 @@
 \RequirePackage{titletoc}
 \tcbuselibrary{theorems}
 \newcommand{\dalembert}{\mathop{}\!\square}
-
+%----------
+\def\@studentname{未设置}
+\def\@studentclass{未设置}
+\def\@studentid{未设置}
+\def\@course{未设置}
+\def\@season{未设置}
+\def\@year{未设置}
 %----------
 %个人信息设置
-\newcommand{\studentname}{张三}    % 姓名
-\newcommand{\studentclass}{究物理01} % 班级
-\newcommand{\studentid}{31415926}  %学号
+\newcommand{\studentname}[1]{\def\@studentname{#1}}    % 姓名
+\newcommand{\studentclass}[1]{\def\@studentclass{#1}} % 班级
+\newcommand{\studentid}[1]{\def\@studentid{#1}}  %学号
 %----------
-
+\newcommand{\course}[1]{\def\@course{#1}}  %课程
+\newcommand{\season}[1]{\def\@season{#1}}  %季节
+\newcommand{\years}[1]{\def\@years{#1}}  %年份
 % 设置编号格式
 \counterwithout{section}{chapter}
 \renewcommand{\thesection}{作业\chinese{section}}
@@ -84,9 +92,9 @@
     halign=center,
     fontupper=\zihao{5}
   ]
-  \textbf{姓名：}\kaishu \studentname\quad
-  \textbf{\songti 班级：}\kaishu \studentclass\quad
-  \textbf{\songti 学号：}\kaishu \studentid
+  \textbf{姓名：}\kaishu \@studentname\quad
+  \textbf{\songti 班级：}\kaishu \@studentclass\quad
+  \textbf{\songti 学号：}\kaishu \@studentid
   \end{tcolorbox}
   \vspace{0pt}
 }
@@ -123,8 +131,8 @@
 
 %----------
 %封面
-\title{某课程作业集}
-\author{张三\\ 究物理01,\ 31415926}
-\date{Autumn 2025}
+\title{\@course 作业集}
+\author{\@studentname\\ \@studentclass,\ \@studentid}
+\date{\@season\ \@years}
 %----------
 
